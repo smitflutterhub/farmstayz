@@ -39,8 +39,6 @@ dependencies:
   google_fonts: ^4.0.3
   connectivity_wrapper: ^1.1.1
   lottie: ^2.2.0
-  animate_gradient: ^0.0.2+1
-  flutter_animated_button: ^2.0.3
   pin_code_fields: any
   shared_preferences: ^2.0.20
   firebase_auth: ^4.3.0
