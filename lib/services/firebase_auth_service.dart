@@ -14,8 +14,30 @@ class Auth {
       final User user = result.user!;
       return user;
     } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.toString())));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Container(
+          padding: const EdgeInsets.all(16),
+          height: 90,
+          decoration: const BoxDecoration(
+              color: Colors.redAccent,
+              borderRadius: BorderRadius.all(Radius.circular(20))),
+          child: Row(
+            children: [
+              const SizedBox(width: 10),
+              Expanded(
+                  child: Text(
+                e.toString(),
+                style: const TextStyle(fontSize: 16, color: Colors.white),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 4,
+              ))
+            ],
+          ),
+        ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ));
       if (kDebugMode) {
         print(e.toString());
       }
@@ -30,8 +52,30 @@ class Auth {
       final User user = result.user!;
       return user;
     } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.toString())));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Container(
+          padding: const EdgeInsets.all(16),
+          height: 90,
+          decoration: const BoxDecoration(
+              color: Colors.redAccent,
+              borderRadius: BorderRadius.all(Radius.circular(20))),
+          child: Row(
+            children: [
+              const SizedBox(width: 10),
+              Expanded(
+                  child: Text(
+                    e.toString(),
+                    style: const TextStyle(fontSize: 16, color: Colors.white),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 4,
+                  ))
+            ],
+          ),
+        ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ));
       if (kDebugMode) {
         print(e.toString());
       }
@@ -56,8 +100,30 @@ class Auth {
         }
       },
       codeSent: (String verificationId, forceResendingToken) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("code send successfully")));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Container(
+            padding: const EdgeInsets.all(16),
+            height: 50,
+            decoration: const BoxDecoration(
+                color: Colors.redAccent,
+                borderRadius: BorderRadius.all(Radius.circular(20))),
+            child: Row(
+              children: const [
+                SizedBox(width: 10),
+                Expanded(
+                    child: Text(
+                      "Code Send Successfully",
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 4,
+                    ))
+              ],
+            ),
+          ),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ));
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -67,8 +133,30 @@ class Auth {
             ));
       },
       codeAutoRetrievalTimeout: (verificationId) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("$verificationId resend otp successfully")));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Container(
+            padding: const EdgeInsets.all(16),
+            height: 90,
+            decoration: const BoxDecoration(
+                color: Colors.redAccent,
+                borderRadius: BorderRadius.all(Radius.circular(20))),
+            child: Row(
+              children: [
+                const SizedBox(width: 10),
+                Expanded(
+                    child: Text(
+                        "$verificationId resend otp successfully",
+                      style: const TextStyle(fontSize: 16, color: Colors.white),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 4,
+                    ))
+              ],
+            ),
+          ),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ));
       },
     );
   }

@@ -56,30 +56,11 @@ class _AdOTPVerificationState extends State<AdOTPVerification> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Verify your number",
-                    style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  const Text(
-                    "With OTP you get",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  const Text(
-                    "on your number",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 60),
+                  SizedBox(
+                      height: 250,
+                      width: 250,
+                      child: Lottie.asset("assets/animation_llwcpz6n.json",fit: BoxFit.fill)),
+                  const SizedBox(height: 30),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                     child: Align(
@@ -113,8 +94,9 @@ class _AdOTPVerificationState extends State<AdOTPVerification> {
                   const SizedBox(height: 100),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                        shadowColor: Colors.red,
                           fixedSize: const Size(250, 60),
-                          backgroundColor: Colors.black87,
+                          backgroundColor: Colors.redAccent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
                           elevation: 20.0),

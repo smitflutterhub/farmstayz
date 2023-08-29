@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import '../admin/alogin_screen.dart';
 import 'login_page.dart';
 
@@ -24,25 +25,22 @@ class _ChoicesState extends State<Choices> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text("Login As",
-              style: TextStyle(fontSize: 70, fontWeight: FontWeight.bold)),
-          const SizedBox(
-            height: 150,
-          ),
+          Lottie.asset("assets/SNfNL6xgrP.json"),
+          const SizedBox(height: 10),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
                   fixedSize: const Size(200, 60),
-                  backgroundColor: Colors.black,
+                  backgroundColor: Colors.redAccent,
+                  shadowColor: Colors.red,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)),
                   elevation: 20.0),
               onPressed: () async {
-                Navigator.pushAndRemoveUntil(
+                Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const AdLoginScreen(),
-                    ),
-                        (route) => false);
+                    ));
               },
               child: const Text("Admin",
                   style: TextStyle(
@@ -53,17 +51,17 @@ class _ChoicesState extends State<Choices> {
           ElevatedButton(
               style: ElevatedButton.styleFrom(
                   fixedSize: const Size(200, 60),
-                  backgroundColor: Colors.black,
+                  shadowColor: Colors.red,
+                  backgroundColor: Colors.redAccent,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)),
                   elevation: 20.0),
               onPressed: () async {
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginPage(),
-                      ),
-                          (route) => false);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage(),
+                    ));
               },
               child: const Text("User",
                   style: TextStyle(

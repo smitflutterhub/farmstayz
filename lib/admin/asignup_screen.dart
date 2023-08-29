@@ -53,6 +53,7 @@ class _AdSignUpState extends State<AdSignUp> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: _buildbody(),
       ),
     );
@@ -66,67 +67,44 @@ class _AdSignUpState extends State<AdSignUp> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Welcome",
-                    style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  SizedBox(
+                      height: 120,
+                      width: 120,
+                      child: Lottie.asset("assets/signup.mp4.lottie.json")),
                   const SizedBox(height: 15),
-                  const Text(
-                    "Create your account and explore",
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 25),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                    child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text("Enter Username",
-                            style: TextStyle(fontSize: 20))),
-                  ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 28),
                     child: TextField(
                       controller: username,
                       cursorColor: Colors.black,
                       decoration: const InputDecoration(
+                          labelText: "Enter Username",
+                          labelStyle: TextStyle(color: Colors.black),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(15),
+                                Radius.circular(30),
                               ),
                               borderSide: BorderSide(color: Colors.black)),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(15),
+                                Radius.circular(30),
                               ),
                               borderSide: BorderSide(color: Colors.black)),
                           fillColor: Colors.white,
                           filled: true,
-                          hintText: "Enter Username",
+                          hintText: "Username",
                           prefixIcon: Icon(
                             Icons.person,
                             color: Colors.black,
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(15),
+                              Radius.circular(30),
                             ),
                           )),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                    child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text("Enter Email ID",
-                            style: TextStyle(fontSize: 20))),
-                  ),
+                  const SizedBox(height: 30),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 28),
                     child: TextField(
@@ -141,38 +119,33 @@ class _AdSignUpState extends State<AdSignUp> {
                       keyboardType: TextInputType.emailAddress,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
+                          labelText: "Enter Email",
+                          labelStyle: const TextStyle(color: Colors.black),
                           enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(15),
+                                Radius.circular(30),
                               ),
                               borderSide: BorderSide(color: Colors.black)),
                           focusedBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(15),
+                                Radius.circular(30),
                               ),
                               borderSide: BorderSide(color: Colors.black)),
                           errorText:
                               estatus ? "Please Enter valid Email" : null,
-                          hintText: "Email ID",
+                          hintText: "Email",
                           prefixIcon: const Icon(
                             Icons.mail,
                             color: Colors.black,
                           ),
                           border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(15),
+                              Radius.circular(30),
                             ),
                           )),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                    child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text("Enter Password",
-                            style: TextStyle(fontSize: 20))),
-                  ),
+                  const SizedBox(height: 30),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 28),
                     child: TextField(
@@ -187,21 +160,23 @@ class _AdSignUpState extends State<AdSignUp> {
                       controller: password,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
+                          labelText: "Enter Password",
+                          labelStyle: const TextStyle(color: Colors.black),
                           enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(15),
+                                Radius.circular(30),
                               ),
                               borderSide: BorderSide(color: Colors.black)),
                           focusedBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(15),
+                                Radius.circular(30),
                               ),
                               borderSide: BorderSide(color: Colors.black)),
                           errorText:
                               pstatus ? "Please Enter valid Password" : null,
                           fillColor: Colors.white,
                           filled: true,
-                          hintText: "Enter Password",
+                          hintText: "Password",
                           prefixIcon: const Icon(
                             Icons.key,
                             color: Colors.black,
@@ -225,19 +200,12 @@ class _AdSignUpState extends State<AdSignUp> {
                               )),
                           border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(15),
+                              Radius.circular(30),
                             ),
                           )),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                    child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text("Enter Mobile Number",
-                            style: TextStyle(fontSize: 20))),
-                  ),
+                  const SizedBox(height: 30),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 28),
                     child: TextField(
@@ -252,26 +220,28 @@ class _AdSignUpState extends State<AdSignUp> {
                       cursorColor: Colors.black,
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
+                          labelText: "Enter Number",
+                          labelStyle: const TextStyle(color: Colors.black),
                           enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(15),
+                                Radius.circular(30),
                               ),
                               borderSide: BorderSide(color: Colors.black)),
                           focusedBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(15),
+                                Radius.circular(30),
                               ),
                               borderSide: BorderSide(color: Colors.black)),
                           errorText:
                               nstatus ? "Please Enter valid mobile no" : null,
-                          hintText: "Enter Number",
+                          hintText: "Number",
                           prefixIcon: const Icon(
                             Icons.phone,
                             color: Colors.black,
                           ),
                           border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(15),
+                              Radius.circular(30),
                             ),
                           )),
                     ),
@@ -279,8 +249,9 @@ class _AdSignUpState extends State<AdSignUp> {
                   const SizedBox(height: 50),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                          shadowColor: Colors.red,
                           fixedSize: const Size(250, 60),
-                          backgroundColor: Colors.black87,
+                          backgroundColor: Colors.redAccent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
                           elevation: 20.0),
@@ -288,20 +259,24 @@ class _AdSignUpState extends State<AdSignUp> {
                         String email1 = email.text;
                         String password1 = password.text;
                         String number1 = mobile.text;
-                        if (email1 == "" || !eregExp.hasMatch(email1)) {
-                          setState(() {
-                            estatus = true;
-                          });
-                        } else if (password1 == "" ||
-                            !pregExp.hasMatch(password1)) {
-                          setState(() {
-                            pstatus = true;
-                          });
-                        } else if (number1 == "" ||
-                            !numregExp.hasMatch(number1)) {
-                          setState(() {
-                            nstatus = true;
-                          });
+                        if (estatus == false ||
+                            pstatus == false ||
+                            nstatus == false) {
+                          if (email1 == "" || !eregExp.hasMatch(email1)) {
+                            setState(() {
+                              estatus = true;
+                            });
+                          }
+                          if (password1 == "" || !pregExp.hasMatch(password1)) {
+                            setState(() {
+                              pstatus = true;
+                            });
+                          }
+                          if (number1 == "" || !numregExp.hasMatch(number1)) {
+                            setState(() {
+                              nstatus = true;
+                            });
+                          }
                         } else {
                           authservice
                               .handleSignUp(context, email.text, password.text)

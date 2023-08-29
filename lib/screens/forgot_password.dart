@@ -54,37 +54,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Forgot Password?",
-                    style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    "Don't Worry",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    "Login with Mobile Number",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  SizedBox(
+                      height: 250,
+                      width: 250,
+                      child: Lottie.asset("assets/animation_llwcp1cg.json",
+                          fit: BoxFit.fill)),
                   const SizedBox(height: 60),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                    child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text("Enter Mobile number",
-                            style: TextStyle(fontSize: 20))),
-                  ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 28),
                     child: TextField(
@@ -99,26 +74,28 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       cursorColor: Colors.black,
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
+                          labelText: "Enter Number",
+                          labelStyle: const TextStyle(color: Colors.black),
                           enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(15),
+                                Radius.circular(30),
                               ),
                               borderSide: BorderSide(color: Colors.black)),
                           focusedBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(15),
+                                Radius.circular(30),
                               ),
                               borderSide: BorderSide(color: Colors.black)),
                           errorText:
                               nstatus ? "Please Enter valid mobile no" : null,
-                          hintText: "Enter Number",
+                          hintText: "Number",
                           prefixIcon: const Icon(
                             Icons.phone,
                             color: Colors.black,
                           ),
                           border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(15),
+                              Radius.circular(30),
                             ),
                           )),
                     ),
@@ -126,8 +103,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   const SizedBox(height: 100),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                        shadowColor: Colors.red,
                           fixedSize: const Size(250, 60),
-                          backgroundColor: Colors.black87,
+                          backgroundColor: Colors.redAccent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
                           elevation: 20.0),
