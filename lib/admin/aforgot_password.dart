@@ -63,6 +63,16 @@ class _AdForgotPasswordState extends State<AdForgotPassword> {
                   const SizedBox(height: 60),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 28),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(33)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.brown,
+                          blurRadius: 5,
+                          spreadRadius: 2,
+                        )
+                      ],
+                    ),
                     child: TextField(
                       onChanged: (value) {
                         if (value != "") {
@@ -75,8 +85,8 @@ class _AdForgotPasswordState extends State<AdForgotPassword> {
                       cursorColor: Colors.black,
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
-                          labelText: "Enter Number",
-                          labelStyle: const TextStyle(color: Colors.black),
+                          fillColor: Colors.white,
+                          filled: true,
                           enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30),
@@ -89,7 +99,7 @@ class _AdForgotPasswordState extends State<AdForgotPassword> {
                               borderSide: BorderSide(color: Colors.black)),
                           errorText:
                               nstatus ? "Please Enter valid mobile no" : null,
-                          hintText: "Number",
+                          hintText: "Enter Number",
                           prefixIcon: const Icon(
                             Icons.phone,
                             color: Colors.black,
@@ -118,7 +128,7 @@ class _AdForgotPasswordState extends State<AdForgotPassword> {
                           });
                         } else {
                           auth
-                              .registerUserWithOTP(mobileno.text, context)
+                              .adregisterUserWithOTP(mobileno.text, context)
                               .then((value) {
                             Navigator.push(
                                 context,

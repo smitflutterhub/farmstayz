@@ -64,12 +64,22 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 150,
+                      height: 150,
                       width: 150,
                       child: Lottie.asset("assets/animation_lluyjw5g.json")),
                   const SizedBox(height: 50),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 28),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(33)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.brown,
+                          blurRadius: 5,
+                          spreadRadius: 2,
+                        )
+                      ],
+                    ),
                     child: TextField(
                       onChanged: (value) {
                         if (value != "") {
@@ -82,8 +92,8 @@ class _LoginPageState extends State<LoginPage> {
                       keyboardType: TextInputType.emailAddress,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
-                        labelText: "Enter Email",
-                          labelStyle: const TextStyle(color: Colors.black),
+                          fillColor: Colors.white,
+                          filled: true,
                           enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30),
@@ -96,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                               borderSide: BorderSide(color: Colors.black)),
                           errorText:
                               estatus ? "Please Enter valid Email" : null,
-                          hintText: "Email",
+                          hintText: "Enter Email",
                           prefixIcon: const Icon(
                             Icons.mail,
                             color: Colors.black,
@@ -111,6 +121,16 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 50),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 28),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(33)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.brown,
+                          blurRadius: 5,
+                          spreadRadius: 2,
+                        )
+                      ],
+                    ),
                     child: TextField(
                       obscureText: showpass ? false : true,
                       onChanged: (value) {
@@ -123,8 +143,6 @@ class _LoginPageState extends State<LoginPage> {
                       controller: password,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
-                          labelText: "Enter Password",
-                          labelStyle: const TextStyle(color: Colors.black),
                           enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30),
@@ -139,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                               pstatus ? "Please Enter valid Password" : null,
                           fillColor: Colors.white,
                           filled: true,
-                          hintText: "Password",
+                          hintText: "Enter Password",
                           prefixIcon: const Icon(
                             Icons.key,
                             color: Colors.black,
@@ -190,7 +208,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 40),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        shadowColor: Colors.red,
+                          shadowColor: Colors.red,
                           fixedSize: const Size(250, 60),
                           backgroundColor: Colors.redAccent,
                           shape: RoundedRectangleBorder(
@@ -199,31 +217,31 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         String email1 = email.text;
                         String password1 = password.text;
-                        if(estatus == false || pstatus == false){
+                        if (estatus == false || pstatus == false) {
                           if (email1 == "" || !eregExp.hasMatch(email1)) {
                             setState(() {
                               estatus = true;
                             });
                           }
-                          if (password1 == "" ||
-                              !pregExp.hasMatch(password1)) {
+                          if (password1 == "" || !pregExp.hasMatch(password1)) {
                             setState(() {
                               pstatus = true;
                             });
+                          } else {
+                            authservice
+                                .handleSignInEmail(
+                                    context, email.text, password.text)
+                                .then((value) {
+                              if (value != null) {
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const HomePage(),
+                                    ),
+                                    (route) => false);
+                              }
+                            });
                           }
-                        } else {
-                          authservice
-                              .handleSignInEmail(context,email.text, password.text)
-                              .then((value) {
-                            if (value != null) {
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const HomePage(),
-                                  ),
-                                  (route) => false);
-                            }
-                          });
                         }
                       },
                       child: const Text("Login",
@@ -241,8 +259,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: RichText(
                         text: const TextSpan(
                             text: "Don't have an account?",
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 18),
+                            style: TextStyle(color: Colors.black, fontSize: 18),
                             children: [
                           TextSpan(
                             text: " Sign Up",

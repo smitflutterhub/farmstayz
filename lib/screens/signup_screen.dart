@@ -74,12 +74,20 @@ class _SignUpState extends State<SignUp> {
                   const SizedBox(height: 15),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 28),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(33)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.brown,
+                          blurRadius: 5,
+                          spreadRadius: 2,
+                        )
+                      ],
+                    ),
                     child: TextField(
                       controller: username,
                       cursorColor: Colors.black,
                       decoration: const InputDecoration(
-                          labelText: "Enter Username",
-                          labelStyle: TextStyle(color: Colors.black),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30),
@@ -92,7 +100,7 @@ class _SignUpState extends State<SignUp> {
                               borderSide: BorderSide(color: Colors.black)),
                           fillColor: Colors.white,
                           filled: true,
-                          hintText: "Username",
+                          hintText: "Enter Username",
                           prefixIcon: Icon(
                             Icons.person,
                             color: Colors.black,
@@ -107,6 +115,16 @@ class _SignUpState extends State<SignUp> {
                   const SizedBox(height: 30),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 28),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(33)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.brown,
+                          blurRadius: 5,
+                          spreadRadius: 2,
+                        )
+                      ],
+                    ),
                     child: TextField(
                       onChanged: (value) {
                         if (value != "") {
@@ -119,8 +137,8 @@ class _SignUpState extends State<SignUp> {
                       keyboardType: TextInputType.emailAddress,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
-                          labelText: "Enter Email",
-                          labelStyle: const TextStyle(color: Colors.black),
+                          fillColor: Colors.white,
+                          filled: true,
                           enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30),
@@ -133,7 +151,7 @@ class _SignUpState extends State<SignUp> {
                               borderSide: BorderSide(color: Colors.black)),
                           errorText:
                               estatus ? "Please Enter valid Email" : null,
-                          hintText: "Email",
+                          hintText: "Enter Email",
                           prefixIcon: const Icon(
                             Icons.mail,
                             color: Colors.black,
@@ -148,6 +166,16 @@ class _SignUpState extends State<SignUp> {
                   const SizedBox(height: 30),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 28),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(33)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.brown,
+                          blurRadius: 5,
+                          spreadRadius: 2,
+                        )
+                      ],
+                    ),
                     child: TextField(
                       obscureText: showpass ? false : true,
                       onChanged: (value) {
@@ -160,8 +188,6 @@ class _SignUpState extends State<SignUp> {
                       controller: password,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
-                          labelText: "Enter Password",
-                          labelStyle: const TextStyle(color: Colors.black),
                           enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30),
@@ -176,7 +202,7 @@ class _SignUpState extends State<SignUp> {
                               pstatus ? "Please Enter valid Password" : null,
                           fillColor: Colors.white,
                           filled: true,
-                          hintText: "Password",
+                          hintText: "Enter Password",
                           prefixIcon: const Icon(
                             Icons.key,
                             color: Colors.black,
@@ -208,6 +234,16 @@ class _SignUpState extends State<SignUp> {
                   const SizedBox(height: 30),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 28),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(33)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.brown,
+                          blurRadius: 5,
+                          spreadRadius: 2,
+                        )
+                      ],
+                    ),
                     child: TextField(
                       onChanged: (value) {
                         if (value != "") {
@@ -220,8 +256,8 @@ class _SignUpState extends State<SignUp> {
                       cursorColor: Colors.black,
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
-                          labelText: "Enter Number",
-                          labelStyle: const TextStyle(color: Colors.black),
+                          fillColor: Colors.white,
+                          filled: true,
                           enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30),
@@ -234,7 +270,7 @@ class _SignUpState extends State<SignUp> {
                               borderSide: BorderSide(color: Colors.black)),
                           errorText:
                               nstatus ? "Please Enter valid mobile no" : null,
-                          hintText: "Number",
+                          hintText: "Enter Number",
                           prefixIcon: const Icon(
                             Icons.phone,
                             color: Colors.black,
@@ -276,22 +312,23 @@ class _SignUpState extends State<SignUp> {
                             setState(() {
                               nstatus = true;
                             });
+                          } else {
+                            authservice
+                                .handleSignUp(
+                                context, email.text, password.text)
+                                .then((value) {
+                              if (value != null) {
+                                database.set(context, username.text, email.text,
+                                    mobile.text, password.text);
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const HomePage(),
+                                    ),
+                                        (route) => false);
+                              }
+                            });
                           }
-                        } else {
-                          authservice
-                              .handleSignUp(context, email.text, password.text)
-                              .then((value) {
-                            if (value != null) {
-                              database.set(context, username.text, email.text,
-                                  mobile.text, password.text);
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const HomePage(),
-                                  ),
-                                  (route) => false);
-                            }
-                          });
                         }
                       },
                       child: const Text("Sign Up",

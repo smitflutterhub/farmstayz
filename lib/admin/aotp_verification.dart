@@ -71,6 +71,15 @@ class _AdOTPVerificationState extends State<AdOTPVerification> {
                   Container(
                     height: 50,
                     margin: const EdgeInsets.symmetric(horizontal: 28),
+                    decoration: const BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.brown,
+                          blurRadius: 5,
+                          spreadRadius: 2,
+                        )
+                      ],
+                    ),
                     child: PinCodeTextField(
                       controller: otpController,
                       backgroundColor: Colors.white,

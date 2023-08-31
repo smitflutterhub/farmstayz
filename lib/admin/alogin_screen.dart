@@ -70,6 +70,16 @@ class _AdLoginScreenState extends State<AdLoginScreen> {
                   const SizedBox(height: 50),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 28),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(33)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.brown,
+                          blurRadius: 5,
+                          spreadRadius: 2,
+                        )
+                      ],
+                    ),
                     child: TextField(
                       onChanged: (value) {
                         if (value != "") {
@@ -82,8 +92,8 @@ class _AdLoginScreenState extends State<AdLoginScreen> {
                       keyboardType: TextInputType.emailAddress,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
-                          labelText: "Enter Email",
-                          labelStyle: const TextStyle(color: Colors.black),
+                          fillColor: Colors.white,
+                          filled: true,
                           enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30),
@@ -96,7 +106,7 @@ class _AdLoginScreenState extends State<AdLoginScreen> {
                               borderSide: BorderSide(color: Colors.black)),
                           errorText:
                               estatus ? "Please Enter valid Email" : null,
-                          hintText: "Email",
+                          hintText: "Enter Email",
                           prefixIcon: const Icon(
                             Icons.mail,
                             color: Colors.black,
@@ -111,6 +121,16 @@ class _AdLoginScreenState extends State<AdLoginScreen> {
                   const SizedBox(height: 50),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 28),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(33)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.brown,
+                          blurRadius: 5,
+                          spreadRadius: 2,
+                        )
+                      ],
+                    ),
                     child: TextField(
                       obscureText: showpass ? false : true,
                       onChanged: (value) {
@@ -123,8 +143,6 @@ class _AdLoginScreenState extends State<AdLoginScreen> {
                       controller: password,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
-                          labelText: "Enter Password",
-                          labelStyle: const TextStyle(color: Colors.black),
                           enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30),
@@ -139,7 +157,7 @@ class _AdLoginScreenState extends State<AdLoginScreen> {
                               pstatus ? "Please Enter valid Password" : null,
                           fillColor: Colors.white,
                           filled: true,
-                          hintText: "Password",
+                          hintText: "Enter Password",
                           prefixIcon: const Icon(
                             Icons.key,
                             color: Colors.black,
@@ -209,21 +227,21 @@ class _AdLoginScreenState extends State<AdLoginScreen> {
                             setState(() {
                               pstatus = true;
                             });
+                          } else {
+                            authservice
+                                .handleSignInEmail(
+                                context, email.text, password.text)
+                                .then((value) {
+                              if (value != null) {
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const AdHomePage(),
+                                    ),
+                                        (route) => false);
+                              }
+                            });
                           }
-                        } else {
-                          authservice
-                              .handleSignInEmail(
-                                  context, email.text, password.text)
-                              .then((value) {
-                            if (value != null) {
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const AdHomePage(),
-                                  ),
-                                  (route) => false);
-                            }
-                          });
                         }
                       },
                       child: const Text("Login",
