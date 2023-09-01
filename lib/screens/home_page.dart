@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -8,23 +9,43 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    getdata();
+  }
+
   TextEditingController search = TextEditingController();
+  String name = "";
+  String mail = "";
+
+  Future<void> getdata() async {
+    final prefs = await SharedPreferences.getInstance();
+    name = prefs.getString('Username') ?? "";
+    mail = prefs.getString("mail") ?? "";
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildappbar(),
-      drawer: _builddrawer(),
-      body: _buildbody(),
+    return SafeArea(
+      child: Scaffold(
+        appBar: _buildappbar(),
+        drawer: _builddrawer(),
+        body: _buildbody(),
+      ),
     );
   }
 
   //App Bar
   AppBar _buildappbar() {
     return AppBar(
+      backgroundColor: Colors.redAccent,
       elevation: 0,
+      title: const Text("Welcome"),
+      centerTitle: true,
       actions: [
-        const Icon(Icons.notifications, color: Colors.white, size: 30),
+        IconButton(icon: const Icon(Icons.person, color: Colors.white, size: 30), onPressed: () {},),
+        const SizedBox(width: 13),
       ],
     );
   }
@@ -33,30 +54,57 @@ class _HomePageState extends State<HomePage> {
   Widget _builddrawer() {
     return Drawer(
       elevation: 0,
+      child: Column(
+        children: [
+          UserAccountsDrawerHeader(
+            decoration: const BoxDecoration(
+              color: Colors.redAccent
+            ),
+              accountName: Text(name.toString(),style: const TextStyle(fontSize: 25)),
+              accountEmail: Text(mail.toString(),style: const TextStyle(fontSize: 17))),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Icon(Icons.account_circle,size: 40),
+                ),
+                Text(name.toString(),style: const TextStyle(fontSize: 20)),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Icon(Icons.mail,size: 40),
+                ),
+                Text(mail.toString(),style: const TextStyle(fontSize: 20)),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              children: const [
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Icon(Icons.wallet,size: 40),
+                ),
+                Text("1000.00 Rs.",style: TextStyle(fontSize: 20)),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   //main body
   Widget _buildbody() {
-    return Column(
-      children: [
-        Container(
-          height: 120,
-          width: MediaQuery.of(context).size.width,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: [
-                const Align(
-                    alignment: Alignment.topLeft,
-                    child:
-                        Text("Online Store", style: TextStyle(fontSize: 20))),
-              ],
-            ),
-          ),
-        ),
-        Text("What's new? "),
-      ],
-    );
+    return Column();
   }
 }

@@ -1,6 +1,7 @@
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../services/firebase_auth_service.dart';
 import '../services/firestore_database_service.dart';
 import 'home_page.dart';
@@ -291,7 +292,10 @@ class _SignUpState extends State<SignUp> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
                           elevation: 20.0),
-                      onPressed: () {
+                      onPressed: () async {
+                        SharedPreferences data = await SharedPreferences.getInstance();
+                        await data.setString("Username", username.text);
+                        await data.setString("mail", email.text);
                         String email1 = email.text;
                         String password1 = password.text;
                         String number1 = mobile.text;
@@ -313,6 +317,7 @@ class _SignUpState extends State<SignUp> {
                               nstatus = true;
                             });
                           } else {
+                            // ignore: use_build_context_synchronously
                             authservice
                                 .handleSignUp(
                                 context, email.text, password.text)
